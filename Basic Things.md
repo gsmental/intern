@@ -1,6 +1,6 @@
 ### JavaScript/HTML/CSS
 * JSON
-  * https://www.youtube.com/watch?v=25zTjtfo0_M&list=PLkcnLJHkIB5dhFJUTYCfxlhGjGPqTVzr7&index=1 //full tutorial
+  * https://www.youtube.com/watch?v=25zTjtfo0_M&list=PLkcnLJHkIB5dhFJUTYCfxlhGjGPqTVzr7&index=1 all example useing html/javascript page
   * https://www.youtube.com/watch?v=-XWwIggmDQk
   * https://www.youtube.com/watch?v=Phba_uYgrnQ
 * REST API
