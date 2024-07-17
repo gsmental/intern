@@ -6,9 +6,11 @@
 * REST API
    *  https://www.youtube.com/watch?v=Kc6BiO6pUNQ
    *  https://www.youtube.com/watch?v=cJAyEOZQUQY 
-* GET/POST REQUEST
 * POSTMAN
 * Retool API Generator https://retool.com/api-generator
+   * https://retool.com/api-generator
+   * https://www.youtube.com/watch?v=h3vBJvTeKD4
+   * https://www.youtube.com/watch?v=qakz2L65dOA
 * What is VS Code and extensions
   * Better Comments
   * Material Icon Theme
