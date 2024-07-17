@@ -23,3 +23,27 @@
 
 ### javaScript
 * Arrow function
+
+### How to Install
+ * VS Code
+ * NodeJs
+ * Anydesk
+ * TeamViewer
+ * Git
+ * Visual Studio
+ * WhatsApp Desktop
+ * Google Chrome
+ * PosgreSQL
+ * Ardiuno
+ * FireFox
+ * MongoDb
+ * MySql
+ * Php
+ * Android studio
+ * Dbeweaver
+ * filaZilla
+ * GitHub Desktop
+ * JDK
+ * .net /framework
+ * PostMan
+ * winrar
