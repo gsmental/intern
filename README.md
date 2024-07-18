@@ -21,6 +21,10 @@
 |-|-|-|
 
 ### JavaScript/HTML/CSS
+
+* Registration form in HTML/Js
+  * https://www.youtube.com/watch?v=WLUCzSaH5kI
+  * https://www.youtube.com/watch?v=YAbTSCR0Qmg
 * JSON
   * https://www.youtube.com/watch?v=25zTjtfo0_M&list=PLkcnLJHkIB5dhFJUTYCfxlhGjGPqTVzr7&index=1 all example useing html/javascript page
   * https://www.youtube.com/watch?v=-XWwIggmDQk
