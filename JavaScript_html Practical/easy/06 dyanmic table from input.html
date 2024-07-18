@@ -1,0 +1,48 @@
+<html>
+
+<script>
+    function addTableRow() {
+        var name = document.getElementById("name");
+        var gender = document.getElementById("gender");
+        var designation = document.getElementById("designation");
+        var date = document.getElementById("date");
+        var table = document.getElementById("tableData");
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+        row.insertCell(0).innerHTML = name.value;
+        row.insertCell(1).innerHTML = gender.value;
+        row.insertCell(2).innerHTML = designation.value;
+        row.insertCell(3).innerHTML = date.value;
+    }
+</script>
+
+<body>
+    <div id="myform">
+        <h4>Fill the below form:</h4>
+        <label>Name:</label>
+        <input type="text" id="name"><br><br>
+        <label>Gender:</label>
+        <input type="text" id="gender"><br><br>
+        <label>Designation:</label>
+        <input type="text" id="designation"><br><br>
+        <label>Joining Date:</label>
+        <input type="date" id="date"><br><br>
+        <button id="add" value="Add" onclick="addTableRow()">Add Data to Table</button>
+    </div>
+
+    <div>
+        <h4>Employee Record</b></h4>
+
+        <table id="tableData" border="1" cellpadding="2">
+            <tr>
+                <td><b>Name</b></td>
+                <td><b>Gender</b></td>
+                <td><b>Designation</b></td>
+                <td><b>Joining Date</b></td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>Random Table Generation from JSON</title>
+</head>
+
+<body>
+    <h1>Random Table Generation from JSON</h1>
+
+    <button onclick="generateRandomTable()">Generate Table</button>
+
+    <div id="tableContainer"></div>
+
+    <script>
+        function generateRandomTable() {
+            const jsonData = [
+                { name: "John", age: 25, country: "USA" },
+                { name: "Alice", age: 30, country: "Canada" },
+                { name: "Bob", age: 22, country: "UK" },
+                { name: "Eva", age: 28, country: "Australia" },
+            ];
+
+            const tableContainer = document.getElementById("tableContainer");
+            const table = document.createElement("table");
+            const tableHeader = document.createElement("thead");
+            const headerRow = tableHeader.insertRow(0);
+
+            // Create table headers based on the keys in the JSON data
+            for (const key in jsonData[0]) {
+                const headerCell = headerRow.insertCell(-1);
+                headerCell.textContent = key;
+            }
+
+            table.appendChild(tableHeader);
+
+            const tableBody = document.createElement("tbody");
+
+            // Create table rows and cells for each JSON object
+            for (const data of jsonData) {
+                const dataRow = tableBody.insertRow(-1);
+                for (const key in data) {
+                    const dataCell = dataRow.insertCell(-1);
+                    dataCell.textContent = data[key];
+                }
+            }
+
+            table.appendChild(tableBody);
+            tableContainer.innerHTML = "";
+            tableContainer.appendChild(table);
+        }
+    </script>
+</body>
+
+</html>

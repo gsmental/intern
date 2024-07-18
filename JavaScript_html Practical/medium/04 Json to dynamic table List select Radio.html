@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Data Presentation Example</title>
+</head>
+
+<body>
+    <h1>Data Presentation Example</h1>
+
+    <!-- Table -->
+    <h2>Table</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody id="tableData">
+        </tbody>
+    </table>
+
+    <!-- Ordered List (OL) -->
+    <h2>Ordered List (OL)</h2>
+    <ol id="orderedList">
+    </ol>
+
+    <!-- Select Dropdown -->
+    <h2>Select Dropdown</h2>
+    <select id="selectDropdown">
+    </select>
+
+    <!-- Radio Button Group -->
+    <h2>Radio Button Group</h2>
+    <div id="radioGroup">
+    </div>
+
+    <!-- Checkbox Group -->
+    <h2>Checkbox Group</h2>
+    <div id="checkboxGroup">
+    </div>
+
+    <script>
+        const jsonData = [
+            { name: "Alice", age: 25 },
+            { name: "Bob", age: 30 },
+            { name: "Charlie", age: 22 }
+        ];
+
+        // Populate the table
+        const tableData = document.getElementById("tableData");
+        jsonData.forEach(item => {
+            const row = tableData.insertRow();
+            row.insertCell(0).textContent = item.name;
+            row.insertCell(1).textContent = item.age;
+        });
+
+        // Populate the ordered list (OL)
+        const orderedList = document.getElementById("orderedList");
+        jsonData.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${item.name} - Age: ${item.age}`;
+            orderedList.appendChild(listItem);
+        });
+
+        // Populate the select dropdown
+        const selectDropdown = document.getElementById("selectDropdown");
+        jsonData.forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.name;
+            option.textContent = item.name;
+            selectDropdown.appendChild(option);
+        });
+
+        // Populate the radio button group
+        const radioGroup = document.getElementById("radioGroup");
+        jsonData.forEach((item, index) => {
+            const label = document.createElement("label");
+            label.textContent = item.name;
+            const radioButton = document.createElement("input");
+            radioButton.type = "radio";
+            radioButton.name = "radioOption";
+            radioButton.value = item.name;
+            radioGroup.appendChild(radioButton);
+            radioGroup.appendChild(label);
+        });
+
+        // Populate the checkbox group
+        const checkboxGroup = document.getElementById("checkboxGroup");
+        jsonData.forEach((item, index) => {
+            const label = document.createElement("label");
+            label.textContent = item.name;
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.value = item.name;
+            checkboxGroup.appendChild(checkbox);
+            checkboxGroup.appendChild(label);
+        });
+    </script>
+</body>
+
+</html>

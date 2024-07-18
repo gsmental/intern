@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <title>Student Information</title>
+    <style>
+        table {
+            width: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Student Information</h1>
+
+    <form id="studentForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required><br><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <button type="button" onclick="saveStudentInfo()">Save</button>
+    </form>
+
+    <h2>Student Information Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+
+    <script>
+        let studentsData = [];
+        let editIndex = -1;
+
+        function saveStudentInfo() {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const gender = document.getElementById("gender").value;
+
+            if (editIndex === -1) {
+                studentsData.push({ name, age, gender });
+            } else {
+                studentsData[editIndex] = { name, age, gender };
+                editIndex = -1;
+            }
+
+            document.getElementById("name").value = '';
+            document.getElementById("age").value = '';
+            document.getElementById("gender").value = 'Male';
+
+            displayStudentsTable();
+        }
+
+        function displayStudentsTable() {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = '';
+
+            studentsData.forEach((student, index) => {
+                const row = tableBody.insertRow();
+
+                row.insertCell(0).textContent = student.name;
+                row.insertCell(1).textContent = student.age;
+                row.insertCell(2).textContent = student.gender;
+
+                const actionsCell = row.insertCell(3);
+                const editButton = document.createElement("button");
+                const deleteButton = document.createElement("button");
+
+                editButton.textContent = "Edit";
+                editButton.addEventListener("click", () => editStudent(index));
+
+                deleteButton.textContent = "Delete";
+                deleteButton.addEventListener("click", () => deleteStudent(index));
+
+                actionsCell.appendChild(editButton);
+                actionsCell.appendChild(deleteButton);
+            });
+        }
+
+        function editStudent(index) {
+            const student = studentsData[index];
+            document.getElementById("name").value = student.name;
+            document.getElementById("age").value = student.age;
+            document.getElementById("gender").value = student.gender;
+            editIndex = index;
+        }
+
+        function deleteStudent(index) {
+            studentsData.splice(index, 1);
+            displayStudentsTable();
+        }
+
+        displayStudentsTable();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Show/Hide Game</title>
+    <style>
+        #target {
+            display: none;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Show/Hide Game</h1>
+    <p>Click the hidden element to reveal it and earn points!</p>
+    <p>Score: <span id="score">0</span></p>
+
+    <div id="target"></div>
+
+    <script>
+        let score = 0;
+        const target = document.getElementById("target");
+
+        target.addEventListener("click", function () {
+            target.style.display = "none";
+            score++;
+            document.getElementById("score").textContent = score;
+            placeRandomly();
+        });
+
+        function placeRandomly() {
+            const maxX = window.innerWidth - target.clientWidth;
+            const maxY = window.innerHeight - target.clientHeight;
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            target.style.left = newX + "px";
+            target.style.top = newY + "px";
+            target.style.display = "block";
+        }
+
+        placeRandomly();
+    </script>
+</body>
+
+</html>

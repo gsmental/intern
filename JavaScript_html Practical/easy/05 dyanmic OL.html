@@ -1,0 +1,26 @@
+<html>
+
+<body>
+  <div>
+    <input id="toDo" type="text" placeholder="Add an item!" required>
+    <button onclick="submitText()">Submit</button>
+  </div>
+  <div>
+    <ol id="probody"></ol>
+  </div>
+  <script>
+    const mainBody = document.querySelector('#probody');
+
+    function submitText() {
+      const text = document.getElementById("toDo").value;
+      const myText = document.createElement("li");
+      myText.appendChild(document.createTextNode(text));
+      mainBody.appendChild(myText);
+
+      //clear text value
+      document.getElementById("toDo").value = "";
+    }
+  </script>
+</body>
+
+</html>

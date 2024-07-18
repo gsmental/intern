@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+    <h1>Interactive Webpage</h1>
+    <p>Click the button to change the background color:</p>
+
+    <button id="colorChangeButton">Change Color</button>
+
+    <p>Enter your name:</p>
+    <input type="text" id="nameInput">
+    <button id="greetButton">Greet</button>
+    <p id="greetingMessage"></p>
+
+    <script>
+        // JavaScript code to change the background color
+        const colorChangeButton = document.getElementById("colorChangeButton");
+        const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33FF", "#33FFFF"];
+        let currentColorIndex = 0;
+
+        colorChangeButton.addEventListener("click", function () {
+            document.body.style.backgroundColor = colors[currentColorIndex];
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+        });
+
+        // JavaScript code to greet the user
+        const greetButton = document.getElementById("greetButton");
+        const nameInput = document.getElementById("nameInput");
+        const greetingMessage = document.getElementById("greetingMessage");
+
+        greetButton.addEventListener("click", function () {
+            const userName = nameInput.value;
+            greetingMessage.textContent = `Hello, ${userName}!`;
+        });
+    </script>
+</body>
+
+</html>

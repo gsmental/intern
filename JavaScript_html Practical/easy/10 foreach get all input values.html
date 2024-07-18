@@ -1,0 +1,36 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>it is getting values from input with foreach</h1>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name"><br><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age"><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email"><br><br>
+
+    <button onclick="collectDataAndDisplayJSON()">Submit</button>
+
+    <script>
+        function collectDataAndDisplayJSON() {
+            const inputs = document.querySelectorAll('input');
+            const formData = {};
+
+            inputs.forEach(input => {
+                formData[input.id] = input.value;
+            });
+
+            console.log(JSON.stringify(formData));
+            alert(JSON.stringify(formData));
+        }
+    </script>
+</body>
+
+</html>

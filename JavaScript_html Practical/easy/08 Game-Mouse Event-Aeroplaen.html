@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Plane Game</title>
+    <style>
+        #plane {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Plane Game</h1>
+    <p>Use arrow keys to move the plane.</p>
+    <img id="plane" src="https://cdn.iconscout.com/icon/premium/png-512-thumb/take-off-5110903-4272521.png?f=webp&w=256"
+        width="100" height="100">
+
+    <script>
+        const plane = document.getElementById("plane");
+        let planeX = 50;
+        let planeY = 50;
+        const planeSpeed = 5;
+
+        function updatePlanePosition() {
+            plane.style.left = `${planeX}%`;
+            plane.style.top = `${planeY}%`;
+        }
+
+        document.addEventListener("keydown", function (event) {
+            switch (event.key) {
+                case "ArrowLeft":
+                    planeX -= planeSpeed;
+                    break;
+                case "ArrowRight":
+                    planeX += planeSpeed;
+                    break;
+                case "ArrowUp":
+                    planeY -= planeSpeed;
+                    break;
+                case "ArrowDown":
+                    planeY += planeSpeed;
+                    break;
+            }
+            updatePlanePosition();
+        });
+    </script>
+</body>
+
+</html>

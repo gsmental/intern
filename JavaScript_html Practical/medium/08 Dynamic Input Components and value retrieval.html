@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+    <h1>Dynamic Input Components and value retrieval</h1>
+
+    <button onclick="addInput()">Add Input</button>
+    <button onclick="getValues()">Get Values</button>
+
+    <div id="inputContainer">
+        <!-- Input components will be added here -->
+    </div>
+
+    <script>
+        let inputCount = 0;
+
+        function addInput() {
+            inputCount++;
+            const inputContainer = document.getElementById("inputContainer");
+            const newInput = document.createElement("input");
+            newInput.setAttribute("type", "text");
+            newInput.setAttribute("id", "input_" + inputCount);
+            newInput.setAttribute("placeholder", "Enter a value");
+            inputContainer.appendChild(newInput);
+        }
+
+        function getValues() {
+            const values = {};
+            for (let i = 1; i <= inputCount; i++) {
+                const inputElement = document.getElementById("input_" + i);
+                values["input_" + i] = inputElement.value;
+            }
+            console.log(JSON.stringify(values));
+            alert(JSON.stringify(values));
+        }
+    </script>
+</body>
+
+</html>

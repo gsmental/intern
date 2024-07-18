@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+    <style>
+        #interactionArea {
+            width: 300px;
+            height: 200px;
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Mouse and Keyboard Events Example</h1>
+
+    <div id="interactionArea">
+        <p>Mouse over me and click, double-click, right-click, or press a key.</p>
+    </div>
+
+    <p id="output">Events will be displayed here.</p>
+
+    <script>
+        const interactionArea = document.getElementById("interactionArea");
+        const output = document.getElementById("output");
+
+        interactionArea.addEventListener("click", function (event) {
+            output.textContent = "Left Click Event";
+        });
+
+        interactionArea.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+            output.textContent = "Right Click Event";
+        });
+
+        interactionArea.addEventListener("dblclick", function (event) {
+            output.textContent = "Double Click Event";
+        });
+
+        interactionArea.addEventListener("mouseenter", function (event) {
+            output.textContent = "Mouse Hover Event";
+        });
+
+        interactionArea.addEventListener("mousedown", function (event) {
+            output.textContent = "Mouse Down (onpress) Event";
+        });
+
+        document.addEventListener("keydown", function (event) {
+            output.textContent = `Key Down Event: Key pressed - ${event.key}`;
+        });
+
+        document.addEventListener("keyup", function (event) {
+            output.textContent = `Key Up Event: Key released - ${event.key}`;
+        });
+    </script>
+</body>
+
+</html>

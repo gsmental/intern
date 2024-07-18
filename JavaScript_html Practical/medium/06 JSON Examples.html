@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSON Examples</title>
+    <style>
+        table {
+            width: 50%;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JSON Examples</h1>
+
+    <h2>Example 1: Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody1">
+            <!-- Rows will be populated here -->
+        </tbody>
+    </table>
+
+    <h2>Example 2: Ordered List (OL)</h2>
+    <ol id="orderedList">
+        <!-- List items will be populated here -->
+    </ol>
+
+    <h2>Example 3: Select Dropdown</h2>
+    <select id="selectDropdown">
+        <!-- Options will be populated here -->
+    </select>
+
+    <script>
+        const jsonData = [
+            { name: "John Doe", age: 30, city: "New York" },
+            { name: "Alice Smith", age: 25, city: "Los Angeles" },
+            { name: "Bob Johnson", age: 28, city: "Chicago" },
+            { name: "Mary Brown", age: 35, city: "Houston" },
+            { name: "David Lee", age: 40, city: "Miami" },
+            { name: "Emily White", age: 22, city: "San Francisco" },
+            { name: "Michael Davis", age: 29, city: "Seattle" },
+            { name: "Sophia Wilson", age: 33, city: "Boston" },
+            { name: "Daniel Wilson", age: 27, city: "Austin" },
+            { name: "Olivia Anderson", age: 31, city: "Denver" }
+        ];
+
+        // Populate Example 1: Table
+        function populateTable(tableId, data) {
+            const tableBody = document.getElementById(tableId);
+            data.forEach(item => {
+                const row = tableBody.insertRow();
+                row.insertCell(0).textContent = item.name;
+                row.insertCell(1).textContent = item.age;
+                row.insertCell(2).textContent = item.city;
+            });
+        }
+
+        populateTable("tableBody1", jsonData.slice(0, 10));
+
+        // Populate Example 2: Ordered List (OL)
+        const orderedList = document.getElementById("orderedList");
+        jsonData.slice(0, 10).forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${item.name}, Age: ${item.age}, City: ${item.city}`;
+            orderedList.appendChild(listItem);
+        });
+
+        // Populate Example 3: Select Dropdown
+        const selectDropdown = document.getElementById("selectDropdown");
+        jsonData.slice(0, 10).forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.name;
+            option.textContent = item.name;
+            selectDropdown.appendChild(option);
+        });
+    </script>
+</body>
+
+</html>

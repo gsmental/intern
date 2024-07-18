@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>Cascading Dropdown Example</h1>
+
+    <label for="countrySelect">Country:</label>
+    <select id="countrySelect">
+        <option value="">Select a country</option>
+    </select>
+
+    <label for="stateSelect">State:</label>
+    <select id="stateSelect">
+        <option value="">Select a state</option>
+    </select>
+
+    <label for="citySelect">City:</label>
+    <select id="citySelect">
+        <option value="">Select a city</option>
+    </select>
+
+    <script>
+        // JavaScript code to populate the dropdowns
+        // You will load your JSON data and populate the dropdowns here.
+        const data = {
+            countries: [
+                {
+                    name: "india",
+                    states: [
+                        {
+                            name: "State 1",
+                            cities: ["City 1", "City 2"]
+                        },
+                        {
+                            name: "State 2",
+                            cities: ["City 3", "City 4"]
+                        }
+                    ]
+                },
+                {
+                    name: "canada",
+                    states: [
+                        {
+                            name: "State 3",
+                            cities: ["City 5", "City 6"]
+                        },
+                        {
+                            name: "State 4",
+                            cities: ["City 7", "City 8"]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const countrySelect = document.getElementById("countrySelect");
+
+        data.countries.forEach(country => {
+            const option = document.createElement("option");
+            option.value = country.name;
+            option.textContent = country.name;
+            countrySelect.appendChild(option);
+        });
+
+        const stateSelect = document.getElementById("stateSelect");
+        const citySelect = document.getElementById("citySelect");
+
+        countrySelect.addEventListener("change", function () {
+            const selectedCountry = countrySelect.value;
+
+            // Clear existing state and city options
+            stateSelect.innerHTML = "<option value=''>Select a state</option>";
+            citySelect.innerHTML = "<option value=''>Select a city</option>";
+
+            if (selectedCountry) {
+                const country = data.countries.find(country => country.name === selectedCountry);
+
+                country.states.forEach(state => {
+                    const option = document.createElement("option");
+                    option.value = state.name;
+                    option.textContent = state.name;
+                    stateSelect.appendChild(option);
+                });
+            }
+        });
+
+        stateSelect.addEventListener("change", function () {
+            const selectedCountry = countrySelect.value;
+            const selectedState = stateSelect.value;
+
+            citySelect.innerHTML = "<option value=''>Select a city</option>";
+
+            if (selectedCountry && selectedState) {
+                const country = data.countries.find(country => country.name === selectedCountry);
+                const state = country.states.find(state => state.name === selectedState);
+
+                state.cities.forEach(city => {
+                    const option = document.createElement("option");
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>

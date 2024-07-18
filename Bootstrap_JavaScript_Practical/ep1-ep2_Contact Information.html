@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <title>Contact Info Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</head>
+<script>
+    function onSave() {
+        var Name = document.getElementById("name");
+        var MobileNo = document.getElementById("mobileno");
+        var Email = document.getElementById("email");
+        var Gender = document.getElementById("gender");
+        var Address = document.getElementById("address");
+
+        var myObj = {
+            name: Name.value,
+            mobileno: MobileNo.value,
+            email: Email.value,
+            gender: Gender.value,
+            address: Address.value,
+        }
+        console.log(myObj)
+
+        if (Name.value == "") {
+            alert("Enter name");
+            return false;
+        }
+
+
+        if (MobileNo.value == "") {
+            alert("Enter valid phone number");
+            return false;
+        }
+
+
+        if (Email.value == "") {
+            alert("Enter a valid email");
+            return false;
+        }
+
+        if (Address.value == "") {
+            alert("Enter  valid address");
+            return false;
+        }
+
+        alert(JSON.stringify(myObj));
+
+        return true;
+    }
+
+</script>
+
+
+<body>
+    <h1 class="text-center m-3">Contact Information</h1>
+
+    <div class="row m-2">
+
+        <span class="border-top"></span>
+        <div class="col-sm-6 p-2">
+            <label for="name">Name</label>
+            <input type="text" name="names" id="name" class="form-control" placeholder="Enter Name">
+        </div>
+
+        <div class="col-sm-6 p-2">
+            <label for="mobileno">Mobile No</label>
+            <input type="number" id="mobileno" class="form-control" placeholder="Enter mobile no">
+        </div>
+
+        <div class="col-sm-6 p-2">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" placeholder="Enter email">
+        </div>
+
+
+        <div class="col-sm-6 p-2">
+            <label for="gender">Gender</label>
+            <select type="select" id="gender" class="form-control">
+                <option value="">Select Gender</option>
+                <option value="1"> Male</option>
+                <option value="2">Female</option>
+                <option value="3">Others</option>
+            </select>
+        </div>
+
+
+        <div class="col-sm-6 p-2">
+            <label for="address">Address</label>
+            <textarea class="form-control" id="address" rows="3" placeholder="Enter Address"></textarea>
+        </div>
+
+
+        <div>
+            <button type="button" class="btn btn-primary m-3" onclick="onSave()">Save</button>
+        </div>
+
+        <span class="border-bottom"></span>
+    </div>
+</body>
+
+</html>

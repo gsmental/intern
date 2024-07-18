@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Javascript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</head>
+<script>
+    const onRun = () => {
+
+        let Value1 = document.getElementById("value1").value;
+        let Value2 = document.getElementById("value2").value;
+        let Result = Number(Value1) + Number(Value2);
+
+        document.getElementById("result").value = Result;
+        console.log("HELLO")
+    }
+</script>
+
+<body>
+    <h1 class="text-center">Sum of two numbers </h1>
+    <div class="row m-4">
+        <div class="col-sm-4 p-2">
+            <label for="value1">Value 1</label>
+            <input type="number" id="value1" class="form-control" placeholder="Enter value no. 1">
+        </div>
+
+        <div class="col-sm-1 p-2">
+            <button type="button" class="btn btn-dark">+</button>
+        </div>
+
+        <div class="col-sm-4 p-2">
+            <label for="value2">Value 2</label>
+            <input type="number" id="value2" class="form-control" placeholder="Enter value no.2">
+        </div>
+
+
+
+        <div>
+            <button type="button" class="btn btn-primary m-4" onclick="onRun()">Run</button>
+        </div>
+
+        <div class="col-sm-4 p-2">
+            <label for="result">Result</label>
+            <input type="number" id="result" class="form-control" placeholder="Total">
+        </div>
+
+    </div>
+</body>
+
+</html>
