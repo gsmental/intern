@@ -1,61 +1,49 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <script>
+        // Function to add a new row to the table
+        function addRow() {
+            // Get the name and age values from the input fields
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            // Get the table element
+            var table = document.getElementById("dataTable");
 
-<script>
-    function addRow() {
-        var myName = document.getElementById("name");
-        var age = document.getElementById("age");
-        var table = document.getElementById("myTableData");
+            // Insert a new row at the end of the table
+            var row = table.insertRow(-1);
+            // Insert cells in the new row
+            row.insertCell(0).innerHTML = '<input type="button" value="Delete" onclick="deleteRow(this)">';
+            row.insertCell(1).innerHTML = name;
+            row.insertCell(2).innerHTML = age;
+        }
 
-        var rowCount = table.rows.length;
-        var row = table.insertRow(rowCount);
-
-        row.insertCell(0).innerHTML = '<input type="button" value = "Delete" onClick="deleteRow(this)">';
-        row.insertCell(1).innerHTML = myName.value;
-        row.insertCell(2).innerHTML = age.value;
-
-    }
-
-    function deleteRow(obj) {
-
-        var index = obj.parentNode.parentNode.rowIndex;
-        var table = document.getElementById("myTableData");
-        table.deleteRow(index);
-
-    }
-
-</script>
-
+        // Function to delete a row from the table
+        function deleteRow(button) {
+            // Get the row to be deleted
+            var row = button.parentNode.parentNode;
+            // Remove the row from the table
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</head>
 <body>
-    <div id="myform">
-        <b>Simple form with name and age ...</b>
-        <table>
-            <tr>
-                <td>Name:</td>
-                <td><input type="text" id="name"></td>
-            </tr>
-            <tr>
-                <td>Age:</td>
-                <td><input type="text" id="age">
-                    <input type="button" id="add" value="Add" onclick="addRow()">
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-    </div>
-    <div id="mydata">
-        <b>Current data in the system ...</b>
-        <table id="myTableData" border="1" cellpadding="2">
-            <tr>
-                <td>&nbsp;</td>
-                <td><b>Name</b></td>
-                <td><b>Age</b></td>
-            </tr>
-        </table>
-    </div>
+    <!-- Form to input name and age -->
+    <h3>Simple form with name and age</h3>
+    <label for="name">Name:</label>
+    <input type="text" id="name">
+    <label for="age">Age:</label>
+    <input type="text" id="age">
+    <button onclick="addRow()">Add</button>
 
+    <!-- Table to display the current data -->
+    <h3>Current data in the system</h3>
+    <table id="dataTable" border="1">
+        <tr>
+            <th>Action</th>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </table>
 </body>
-
 </html>
