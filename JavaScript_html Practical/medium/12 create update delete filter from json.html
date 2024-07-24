@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Information</title>
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Styling for the form */
+        form {
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        /* Styling for labels and inputs */
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Styling for buttons */
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Styling for the table */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Styling for the filter container */
+        .filter-container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .filter-container input {
+            width: 200px;
+            padding: 8px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align:center;">Student Information</h1>
+
+  <h6>
+    Here is an HTML program that allows you to create, update, and delete student basic information. The table is generated from JSON data. When the user clicks the save button, the data is pushed into the JSON and the table is updated. A filter option is also provided to search through the table.
+  </h6>    
+    <!-- Form to input student information -->
+    <form id="studentForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" required>
+
+        <!-- Button to save entry -->
+        <button type="button" onclick="saveEntry()">Save Entry</button>
+    </form>
+
+    <!-- Filter input to search table -->
+    <div class="filter-container">
+        <label for="filter">Filter by Name:</label>
+        <input type="text" id="filter" oninput="filterTable()">
+    </div>
+
+    <h2 style="text-align:center;">Student Entries</h2>
+
+    <!-- Table to display student entries -->
+    <table id="entryTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Grade</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="entryTableBody"></tbody>
+    </table>
+
+    <script>
+        // Array to store student entries
+        let entries = [];
+
+        // Function to save a new entry
+        function saveEntry() {
+            const name = document.getElementById('name').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const grade = document.getElementById('grade').value;
+
+            // Create a new entry object
+            const entry = { name, age, grade };
+
+            // Add the entry to the entries array
+            entries.push(entry);
+
+            // Update the table with the new entry
+            updateTable();
+
+            // Reset the form
+            document.getElementById('studentForm').reset();
+        }
+
+        // Function to update the table with entries
+        function updateTable() {
+            const tableBody = document.getElementById('entryTableBody');
+            tableBody.innerHTML = '';
+
+            // Loop through the entries array and create table rows
+            for (let i = 0; i < entries.length; i++) {
+                const entry = entries[i];
+                const row = document.createElement('tr');
+
+                // Loop through each entry's key and create table cells
+                for (const key in entry) {
+                    const cell = document.createElement('td');
+                    cell.textContent = entry[key];
+                    row.appendChild(cell);
+                }
+
+                const actionsCell = document.createElement('td');
+
+                // Create Update button
+                const updateButton = document.createElement('button');
+                updateButton.textContent = 'Update';
+                updateButton.onclick = () => updateEntry(i);
+                actionsCell.appendChild(updateButton);
+
+                // Create Delete button
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteEntry(i);
+                actionsCell.appendChild(deleteButton);
+
+                // Append actions cell to the row
+                row.appendChild(actionsCell);
+
+                // Append the row to the table body
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Function to update an entry
+        function updateEntry(index) {
+            const entry = entries[index];
+            document.getElementById('name').value = entry.name;
+            document.getElementById('age').value = entry.age;
+            document.getElementById('grade').value = entry.grade;
+
+            // Remove the entry from the array and update the table
+            entries.splice(index, 1);
+            updateTable();
+        }
+
+        // Function to delete an entry
+        function deleteEntry(index) {
+            entries.splice(index, 1);
+            updateTable();
+        }
+
+        // Function to filter the table by name
+        function filterTable() {
+            const filter = document.getElementById('filter').value.toLowerCase();
+            const tableBody = document.getElementById('entryTableBody');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            // Loop through the table rows and hide those that don't match the filter
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                const name = cells[0].textContent.toLowerCase();
+
+                // if value matches the filter, show the row, otherwise hide it
+                if (name.includes(filter)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
