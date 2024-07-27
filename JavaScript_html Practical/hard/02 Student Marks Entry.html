@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Entry</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Custom CSS for error highlighting -->
+    <style>
+        .error {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Student Marks Entry</h2>
+        <!-- Form for entering student marks -->
+        <form id="marksForm">
+            <div class="mb-3">
+                <label for="studentName" class="form-label">Student Name</label>
+                <input type="text" class="form-control" id="studentName" required>
+            </div>
+            <div class="mb-3">
+                <label for="english" class="form-label">English</label>
+                <input type="number" class="form-control" id="english" required>
+            </div>
+            <div class="mb-3">
+                <label for="punjabi" class="form-label">Punjabi</label>
+                <input type="number" class="form-control" id="punjabi" required>
+            </div>
+            <div class="mb-3">
+                <label for="hindi" class="form-label">Hindi</label>
+                <input type="number" class="form-control" id="hindi" required>
+            </div>
+            <div class="mb-3">
+                <label for="math" class="form-label">Math</label>
+                <input type="number" class="form-control" id="math" required>
+            </div>
+            <div class="mb-3">
+                <label for="evs" class="form-label">EVS</label>
+                <input type="number" class="form-control" id="evs" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="saveMarks()">Save</button>
+            <!-- Hidden input to track the index of the student being edited -->
+            <input type="hidden" id="editIndex" value="">
+        </form>
+
+        <h2 class="mt-5">Student Marks List</h2>
+        <!-- Table to display the list of student marks -->
+        <table class="table table-bordered" id="marksTable">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>English</th>
+                    <th>Punjabi</th>
+                    <th>Hindi</th>
+                    <th>Math</th>
+                    <th>EVS</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Student rows will be appended here -->
+            </tbody>
+        </table>
+    </div>
+
+    <hr/>
+
+    <ol><li><strong>General Setup</strong>: Comments explaining the inclusion of Bootstrap CSS, SweetAlert2, and custom CSS for error highlighting.</li><li><strong>Form Section</strong>: Comments explaining the form setup for entering student marks.</li><li><strong>Hidden Input</strong>: Comments explaining the purpose of the hidden input used for tracking the index of the student being edited.</li><li><strong>Table Section</strong>: Comments explaining the setup of the table for displaying the list of student marks.</li><li><strong>JavaScript Section</strong>:<ul><li><strong>saveMarks Function</strong>: Comments explaining each step, including getting input values, validating marks, handling edit mode, binding the table, and showing confirmation and success messages.</li><li><strong>validateMarks Function</strong>: Comments explaining the validation logic for the marks and highlighting invalid inputs.</li><li><strong>deleteStudent Function</strong>: Comments explaining the confirmation dialog and the deletion logic.</li><li><strong>editStudent Function</strong>: Comments explaining the logic for populating the form with student details for editing.</li><li><strong>bindTable Function</strong>: Comments explaining the logic for binding the table with student data and applying colors based on student status.</li><li><strong>calculateStatus Function</strong>: Comments explaining the logic for calculating the student status based on their marks.</li></ul></li></ol>
+
+    <script>
+        // Array to hold student data
+        let students = [];
+
+        // Function to save marks
+        function saveMarks() {
+            // Get input values
+            const studentName = document.getElementById('studentName').value;
+            const english = document.getElementById('english');
+            const punjabi = document.getElementById('punjabi');
+            const hindi = document.getElementById('hindi');
+            const math = document.getElementById('math');
+            const evs = document.getElementById('evs');
+            const editIndex = document.getElementById('editIndex').value;
+
+            // Define subjects with their input elements
+            const subjects = [
+                { name: 'English', input: english },
+                { name: 'Punjabi', input: punjabi },
+                { name: 'Hindi', input: hindi },
+                { name: 'Math', input: math },
+                { name: 'EVS', input: evs }
+            ];
+
+            // Validate marks and get invalid subjects
+            let invalidSubjects = validateMarks(subjects);
+
+            if (invalidSubjects.length > 0) {
+                // Show error message if there are invalid subjects
+                Swal.fire('Error', `Marks should be numbers and not more than 100 for: ${invalidSubjects.join(', ')}`, 'error');
+                return;
+            }
+
+            // Confirmation dialog before saving
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to save the student's marks?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, save it!',
+                cancelButtonText: 'No, cancel!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Create student object
+                    const student = {
+                        studentName,
+                        english: parseInt(english.value),
+                        punjabi: parseInt(punjabi.value),
+                        hindi: parseInt(hindi.value),
+                        math: parseInt(math.value),
+                        evs: parseInt(evs.value)
+                    };
+
+                    if (editIndex !== "") {
+                        // Update existing student if in edit mode
+                        students[editIndex] = student;
+                        document.getElementById('editIndex').value = "";
+                    } else {
+                        // Add new student
+                        students.push(student);
+                    }
+
+                    // Bind table with updated student list
+                    bindTable();
+                    // Reset form
+                    document.getElementById('marksForm').reset();
+                    // Show success message
+                    Swal.fire('Saved!', "The student's marks have been saved.", 'success');
+                }
+            });
+        }
+
+        // Function to validate marks
+        function validateMarks(subjects) {
+            let invalidSubjects = [];
+            // Clear previous error states
+            subjects.forEach(subject => {
+                subject.input.classList.remove('error');
+                const mark = parseInt(subject.input.value);
+                if (!Number.isInteger(mark) || mark < 0 || mark > 100) {
+                    // Add subject to invalid subjects list and highlight the input
+                    invalidSubjects.push(subject.name);
+                    subject.input.classList.add('error');
+                }
+            });
+            return invalidSubjects;
+        }
+
+        // Function to delete a student
+        function deleteStudent(index) {
+            // Confirmation dialog before deleting
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to delete this student?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Remove student from the array
+                    students.splice(index, 1);
+                    // Bind table with updated student list
+                    bindTable();
+                    // Show success message
+                    Swal.fire('Deleted!', "The student's marks have been deleted.", 'success');
+                }
+            });
+        }
+
+        // Function to edit a student
+        function editStudent(index) {
+            // Populate form with student details for editing
+            const student = students[index];
+            document.getElementById('studentName').value = student.studentName;
+            document.getElementById('english').value = student.english;
+            document.getElementById('punjabi').value = student.punjabi;
+            document.getElementById('hindi').value = student.hindi;
+            document.getElementById('math').value = student.math;
+            document.getElementById('evs').value = student.evs;
+            document.getElementById('editIndex').value = index;
+        }
+
+        // Function to bind table with student data
+        function bindTable() {
+            const marksTableBody = document.getElementById('marksTable').getElementsByTagName('tbody')[0];
+            marksTableBody.innerHTML = '';
+            students.forEach((student, index) => {
+                // Create a new row for each student
+                const row = marksTableBody.insertRow();
+                // Calculate the status of the student based on marks
+                const status = calculateStatus([student.english, student.punjabi, student.hindi, student.math, student.evs]);
+
+                // Insert cells with student data
+                row.insertCell(0).textContent = student.studentName;
+                row.insertCell(1).textContent = student.english;
+                row.insertCell(2).textContent = student.punjabi;
+                row.insertCell(3).textContent = student.hindi;
+                row.insertCell(4).textContent = student.math;
+                row.insertCell(5).textContent = student.evs;
+                row.insertCell(6).textContent = status;
+
+                // Apply color based on student status
+                if (status === 'Pass') {
+                    row.classList.add('table-success');
+                } else if (status === 'Reappear') {
+                    row.classList.add('table-warning');
+                } else {
+                    row.classList.add('table-danger');
+                }
+
+                // Add action buttons for edit and delete
+                const actionsCell = row.insertCell(7);
+                actionsCell.innerHTML = `<button class="btn btn-warning btn-sm" onclick="editStudent(${index})">Edit</button>
+                                         <button class="btn btn-danger btn-sm" onclick="deleteStudent(${index})">Delete</button>`;
+            });
+        }
+
+        // Function to calculate student status based on marks
+        function calculateStatus(marks) {
+            const passMarks = 40;
+            const failCount = marks.filter(mark => mark < passMarks).length;
+
+            if (failCount === 0) {
+                return 'Pass';
+            } else if (failCount === 1) {
+                return 'Reappear';
+            } else {
+                return 'Fail';
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
