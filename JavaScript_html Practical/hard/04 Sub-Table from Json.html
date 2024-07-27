@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h4>this is static html-table</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Father's Name</th>
+                    <th>Class Name</th>
+                    <th>Subjects</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>Mr. Doe</td>
+                    <td>Class 10</td>
+                    <td>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>Maths</td>
+                                <td>Science</td>
+                                <td>English</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jane Doe</td>
+                    <td>Mr. Doe</td>
+                    <td>Class 12</td>
+                    <td>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>Maths</td>
+                                <td>Science</td>
+                                <td>History</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="table-container">
+        <h4>this is dynamic html-table</h4>
+        <table class="table table-striped" id="mytable">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Father's Name</th>
+                <th>Class Name</th>
+                <th>Subjects</th>
+            </tr>
+        </thead>
+        </table>
+    </div>
+    <script>
+        const jsonData = [
+            {
+                student: "John Doe",
+                fatherName: "Mr. Doe-1",
+                className: "Class 10",
+                subjects: ["Maths", "Science", "English"]
+            },
+            {
+                student: "Jane Doe-2",
+                fatherName: "Mr. Doe-2",
+                className: "Class 12",
+                subjects: ["Maths", "Science", "History"]
+            },    {
+                student: "John Doe-3",
+                fatherName: "Mr. Doe-3",
+                className: "Class 10",
+                subjects: ["Maths", "Science", "English"]
+            },
+            {
+                student: "Jane Doe-4",
+                fatherName: "Mr. Doe-4",
+                className: "Class 12",
+                subjects: ["Maths", "Science", "History"]
+            }
+        ];
+
+        const tableContainer = document.getElementById("table-container");
+
+        const table = document.getElementById("mytable");
+        const tbody = document.createElement("tbody");
+        jsonData.forEach((data) => {
+            const tr = document.createElement("tr");
+            const td1 = document.createElement("td");
+            td1.textContent = data.student;
+            const td2 = document.createElement("td");
+            td2.textContent = data.fatherName;
+            const td3 = document.createElement("td");
+            td3.textContent = data.className;
+            const td4 = document.createElement("td");
+            const subTable = document.createElement("table");
+            subTable.className = "table table-bordered";
+            const subTr = document.createElement("tr");
+            data.subjects.forEach((subject) => {
+                const subTd = document.createElement("td");
+                subTd.textContent = subject;
+                subTr.appendChild(subTd);
+            });
+            subTable.appendChild(subTr);
+            td4.appendChild(subTable);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        tableContainer.appendChild(table);
+    </script>
+
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
