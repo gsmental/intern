@@ -23,8 +23,10 @@
 
 
 #### React
+|Type|Description|url|
 |-|-|-|
-|ReactJs Crash Course One Hour Hindi|Master the Basics in One Video! Ignite Your Front-End Mastery Series!|https://www.youtube.com/watch?v=Xe8CkYZvCig|
+|ReactJs Crash Course One Hour Hindi|Master the Basics in One Video! Ignite Your Front-End Mastery Series! | https://www.youtube.com/watch?v=Xe8CkYZvCig|
+|Props|What is Props in React JS|https://www.youtube.com/watch?v=D514xxtGdjA|
 |-|-|-|
 |-|-|-|
 
