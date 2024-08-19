@@ -31,8 +31,8 @@
 |Conditional Rendering I|-|https://www.youtube.com/watch?v=1L2M_CA7LAY&list=PLsuIm95J7Lco58PVaz6c1ssCwHy8GaxHa&index=10|
 |Fetch Data from JSON File i|-|https://www.youtube.com/watch?v=ZO3u2nmuk00|
 |react-select |-|https://www.youtube.com/watch?v=13CLTU7nvhk|
-|-|-|-|
-|-|-|-|
+|React Date Picker|-|https://www.youtube.com/watch?v=HDWOpcSydb4|
+|React Hook Form|-|https://www.youtube.com/watch?v=FpJowvSgJlk|
 
 ### JavaScript/HTML/CSS
 
