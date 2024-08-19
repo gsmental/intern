@@ -26,6 +26,7 @@
 |Type|Description|url|
 |-|-|-|
 |ReactJs Crash Course One Hour Hindi|Master the Basics in One Video! Ignite Your Front-End Mastery Series! | https://www.youtube.com/watch?v=Xe8CkYZvCig|
+|Folder structure|-|https://www.youtube.com/watch?v=4lB9lLWpR3c&list=PLp18NAIKHWnvpLpioGs6ZAiMlpfx49KOz&index=3|
 |Props|What is Props in React JS|https://www.youtube.com/watch?v=D514xxtGdjA|
 |Hooks|UseState And UseEffect Hooks|https://www.youtube.com/watch?v=gSJL1FRb1kA|
 |Conditional Rendering I|-|https://www.youtube.com/watch?v=1L2M_CA7LAY&list=PLsuIm95J7Lco58PVaz6c1ssCwHy8GaxHa&index=10|
@@ -35,7 +36,6 @@
 |React Hook Form|-|https://www.youtube.com/watch?v=FpJowvSgJlk|
 |Axios-GET|-|https://www.youtube.com/watch?v=RQM5UyDrNDc|
 |Axios-POST|-|https://www.youtube.com/watch?v=--Db-ZO-NVM|
-|-|-|-|
 |-|-|-|
 |-|-|-|
 |-|-|-|
