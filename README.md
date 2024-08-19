@@ -33,6 +33,13 @@
 |react-select |-|https://www.youtube.com/watch?v=13CLTU7nvhk|
 |React Date Picker|-|https://www.youtube.com/watch?v=HDWOpcSydb4|
 |React Hook Form|-|https://www.youtube.com/watch?v=FpJowvSgJlk|
+|Axios|-|https://www.youtube.com/watch?v=RQM5UyDrNDc|
+|-|-|-|
+|-|-|-|
+|-|-|-|
+|-|-|-|
+|-|-|-|
+|-|-|-|
 
 ### JavaScript/HTML/CSS
 
