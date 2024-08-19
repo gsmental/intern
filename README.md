@@ -18,7 +18,13 @@
 |bootstrap 5|one hour basic course|https://www.youtube.com/watch?v=nPxCYOO1e44|
 |Web| Web Development(HTML CSS JS node Mongo) Code with harry|https://www.youtube.com/watch?v=6mbwJ2xhgzM&list=PLu0W_9lII9agiCUZYRsvtGTXdxkzPyItg|
 |JavaScript|Complete javascript Thapa 17 hours|https://www.youtube.com/watch?v=KGkiIBTq0y0|
-|ReactJs Crash Course Hindi|Master the Basics in One Video! Ignite Your Front-End Mastery Series!|https://www.youtube.com/watch?v=Xe8CkYZvCig|
+|-|-|-|
+|-|-|-|
+
+
+#### React
+|-|-|-|
+|ReactJs Crash Course One Hour Hindi|Master the Basics in One Video! Ignite Your Front-End Mastery Series!|https://www.youtube.com/watch?v=Xe8CkYZvCig|
 |-|-|-|
 |-|-|-|
 
